@@ -1,11 +1,10 @@
-class WeatherModel {
+class WeatherAp {
   Coord coord;
   List<Weather> weather;
   String base;
   Main main;
   int visibility;
   Wind wind;
-  Rain rain;
   Clouds clouds;
   int dt;
   Sys sys;
@@ -14,14 +13,13 @@ class WeatherModel {
   String name;
   int cod;
 
-  WeatherModel(
+  WeatherAp(
       {this.coord,
         this.weather,
         this.base,
         this.main,
         this.visibility,
         this.wind,
-        this.rain,
         this.clouds,
         this.dt,
         this.sys,
@@ -30,7 +28,7 @@ class WeatherModel {
         this.name,
         this.cod});
 
-  WeatherModel.fromJson(Map<String, dynamic> json) {
+  WeatherAp.fromJson(Map<String, dynamic> json) {
     coord = json['coord'] != null ? new Coord.fromJson(json['coord']) : null;
     if (json['weather'] != null) {
       weather = new List<Weather>();
@@ -42,7 +40,6 @@ class WeatherModel {
     main = json['main'] != null ? new Main.fromJson(json['main']) : null;
     visibility = json['visibility'];
     wind = json['wind'] != null ? new Wind.fromJson(json['wind']) : null;
-    rain = json['rain'] != null ? new Rain.fromJson(json['rain']) : null;
     clouds =
     json['clouds'] != null ? new Clouds.fromJson(json['clouds']) : null;
     dt = json['dt'];
@@ -68,9 +65,6 @@ class WeatherModel {
     data['visibility'] = this.visibility;
     if (this.wind != null) {
       data['wind'] = this.wind.toJson();
-    }
-    if (this.rain != null) {
-      data['rain'] = this.rain.toJson();
     }
     if (this.clouds != null) {
       data['clouds'] = this.clouds.toJson();
@@ -169,36 +163,23 @@ class Main {
 }
 
 class Wind {
-  int speed;
+  double speed;
   int deg;
+  double gust;
 
-  Wind({this.speed, this.deg});
+  Wind({this.speed, this.deg, this.gust});
 
   Wind.fromJson(Map<String, dynamic> json) {
     speed = json['speed'];
     deg = json['deg'];
+    gust = json['gust'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['speed'] = this.speed;
     data['deg'] = this.deg;
-    return data;
-  }
-}
-
-class Rain {
-  double d1h;
-
-  Rain({this.d1h});
-
-  Rain.fromJson(Map<String, dynamic> json) {
-    d1h = json['1h'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['1h'] = this.d1h;
+    data['gust'] = this.gust;
     return data;
   }
 }

@@ -7,3 +7,5 @@ class SearchState extends ChangState {}
 class GetUrlState extends ChangState {}
 
 class PostUrlState extends ChangState {}
+
+class VarsState extends ChangState {}
