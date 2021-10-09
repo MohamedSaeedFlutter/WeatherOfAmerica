@@ -90,7 +90,8 @@ builder: (context, state) {
             Text(dropdownValue, style: const TextStyle(
               fontWeight: FontWeight.w800,
               color: Colors.pinkAccent,
-              fontSize: 48,),),
+              fontSize: 42,),),
+      const SizedBox(height: 8,),
       Text(weather.weather.first.description, style: const TextStyle(
         fontWeight: FontWeight.w600,
         color: Colors.redAccent,

@@ -12,7 +12,10 @@ class FetchApi extends Cubit<ChangState> {
 
   Future<WeatherAp> getWeather({String zipCode}) async {
     WeatherAp  weather;
-    var url = Uri.parse("http://api.openweathermap.org/data/2.5/weather?zip=29201,us&APPID=661daa7377189bfe425b6af1f07ac279");
+    String link ="http://api.openweathermap.org/data/2.5/weather?zip=" +
+        zipCode +
+        ",us&APPID=661daa7377189bfe425b6af1f07ac279" ;
+    var url = Uri.parse( link );
     http.Response response = await http.get(url, headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
