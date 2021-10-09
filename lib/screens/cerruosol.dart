@@ -22,7 +22,11 @@ int listIndex  = 4;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Weather Of America')),
+      appBar: AppBar(
+        foregroundColor: Colors.amber,
+          backgroundColor: Colors.teal,
+          title: const Text('Weather Of America',style: TextStyle(
+              fontSize: 26,fontWeight: FontWeight.w700),)),
       body:
       Center(
         child: Column(children: [
@@ -82,42 +86,47 @@ builder: (context, state) {
       print("weatherweatherweatherweatherweather$weather");
       print("${snapshot.error}snapshot.errorsnapshot.errorsnapshot.error");
       return
-      Expanded(
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(dropdownValue, style: const TextStyle(
-              fontWeight: FontWeight.w800,
-              color: Colors.pinkAccent,
-              fontSize: 42,),),
-      const SizedBox(height: 8,),
-      Text(weather.weather.first.description, style: const TextStyle(
+      Container(
+        width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height * .55,
+      child: Card(
+        color: Colors.teal,
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(dropdownValue, style: const TextStyle(
+                fontWeight: FontWeight.w800,
+                color: Colors.amber,
+                fontSize: 48,),),
+        const SizedBox(height: 8,),
+        Text(weather.weather.first.description??"", style: const TextStyle(
+          fontWeight: FontWeight.w600,
+          color: Colors.redAccent,
+          fontSize: 28,),),
+              const SizedBox(height: 8,),
+        Text('Temperature  ${((weather?.main?.temp) -272.15).round().toString()??""} C', style: const TextStyle(
         fontWeight: FontWeight.w600,
-        color: Colors.redAccent,
+        color: Colors.white,
         fontSize: 18,),),
-
-      Text('Temperature  ${((weather.main.temp) -272.15).round().toString()} C', style: const TextStyle(
-      fontWeight: FontWeight.w600,
-      color: Colors.redAccent,
-      fontSize: 18,),),
-      Text('The Lowest Temp  ${((weather.main.tempMin) -272.15).round().toString()} C', style: const TextStyle(
-      fontWeight: FontWeight.w600,
-      color: Colors.redAccent,
-      fontSize: 18,),),
-      Text('The highest Temp  ${((weather.main.tempMax) -272.15).round().toString()} C', style: const TextStyle(
-      fontWeight: FontWeight.w600,
-      color: Colors.redAccent,
-      fontSize: 18,),),
-      Text("Wind speed ${weather.wind.speed.toString()} mph", style: const TextStyle(
+        Text('The Lowest Temp  ${((weather?.main?.tempMin) -272.15).round().toString()??""} C', style: const TextStyle(
         fontWeight: FontWeight.w600,
-        color: Colors.redAccent,
+        color: Colors.white,
         fontSize: 18,),),
-      Text("Humidity ${weather.main.humidity.toString()} %", style: const TextStyle(
-              fontWeight: FontWeight.w600,
-              color: Colors.redAccent,
-              fontSize: 18,),),
-          ],),
+        Text('The highest Temp  ${((weather?.main?.tempMax) -272.15).round().toString()??""} C', style: const TextStyle(
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+        fontSize: 18,),),
+        Text("Wind speed ${weather?.wind?.speed.toString()??""} mph", style: const TextStyle(
+          fontWeight: FontWeight.w600,
+          color: Colors.white,
+          fontSize: 18,),),
+        Text("Humidity ${weather?.main?.humidity.toString()??""} %", style: const TextStyle(
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+                fontSize: 18,),),
+            ],),
+      ),
         );});
 }) ,
 
